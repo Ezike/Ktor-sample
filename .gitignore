@@ -1,0 +1,32 @@
+# Project exclude paths
+/.gradle/
+/build/
+
+*.iml
+.gradle
+/local.properties
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+
++# Temporary files that kdiff generates
+ +*.orig
+
+# IDEA/Android Studio ignores
+/.idea/*
+
+# IDEA/Android Studio Ignore exceptions
+!/.idea/codeStyleSettings.xml
+
+/*/local.properties
+/*/out
+/*/*/build
+/*/*/production
+*.iws
+*.ipr
+*~
+*.swp
+*.orig
+/*/jacoco.exec
