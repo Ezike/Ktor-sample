@@ -29,7 +29,7 @@ fun Route.phrases(db: Repository, hashfxn: (String) -> String) {
         val user = call.sessions.get<EpSession>()?.let { db.user(it.userId) }
         if (user == null) call.redirect(SignIn())
         else {
-            val data = db.phrases()
+            val data = db.phrases(user.userId)
             val date = System.currentTimeMillis()
             val code = call.securityCode(date, user, hashfxn)
             call.respond(

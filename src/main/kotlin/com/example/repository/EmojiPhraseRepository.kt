@@ -10,7 +10,6 @@ import org.jetbrains.exposed.sql.deleteAll
 import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
-import org.jetbrains.exposed.sql.selectAll
 
 class EmojiPhraseRepository : Repository {
 
@@ -37,8 +36,10 @@ class EmojiPhraseRepository : Repository {
         return phrase(id.toInt())
     }
 
-    override suspend fun phrases(): List<EmojiPhrase> = dbQuery {
-        EmojiPhraseTable.selectAll().map { toEmojiPhrase(it) }
+    override suspend fun phrases(userId: String): List<EmojiPhrase> = dbQuery {
+        EmojiPhraseTable.select {
+            EmojiPhraseTable.user eq userId
+        }.map { toEmojiPhrase(it) }
     }
 
     override suspend fun remove(id: Int): Boolean {

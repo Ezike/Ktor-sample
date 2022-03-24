@@ -24,7 +24,10 @@ class PhraseApi
 
 fun Route.phraseApi(db: Repository) {
     authenticate("jwt") {
-        get<PhraseApi> { call.respond(db.phrases()) }
+        get<PhraseApi> {
+            val user = call.apiUser ?: return@get call.redirect(SignIn())
+            call.respond(db.phrases(user.userId))
+        }
         post<PhraseApi> {
             val user = call.apiUser ?: return@post call.redirect(SignIn())
             try {
