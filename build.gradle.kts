@@ -74,3 +74,7 @@ dependencies {
 
     implementation("org.postgresql:postgresql:42.2.4.jre7")
 }
+
+task("stage") {
+    dependsOn("installDist")
+}
