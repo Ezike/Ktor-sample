@@ -1,1 +1,1 @@
-web: ./build/install/ktor-sample/bin/ktor-sample
+web: ./build/install/emojiphrasesktor/bin/emojiphrasesktor
